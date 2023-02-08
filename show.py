@@ -58,10 +58,7 @@ def drawPic():
 
 if __name__ == '__main__':
     wendu_url = 'http://localhost:8080/findAllWendu'
-    shidu_url = 'http://localhost:8080/findAllShidu'
-    gas_url = 'http://localhost:8080/findGas'
-    sun_url = 'http://localhost:8080/findGuangzhao'
-    data = [('温度', wendu_url), ('湿度', shidu_url), ('可燃气', gas_url), ('光照', sun_url)]
+    data = [('温度', wendu_url)]
 
     matplotlib.use('TkAgg')
 
@@ -70,7 +67,7 @@ if __name__ == '__main__':
 
     drawPic.canvas = FigureCanvasTkAgg(drawPic.f, master=root)
 
-    drawPic.canvas.show()
+    drawPic.canvas.draw()
 
     drawPic.canvas.get_tk_widget().grid(row=0, columnspan=3)
     var = StringVar()
@@ -86,7 +83,7 @@ if __name__ == '__main__':
 
     inputEntry.grid(row=2, column=1)
 
-    inputEntry.insert(0, '2017-6-12')
+    inputEntry.insert(0, '2023-1-1')
 
     Button(root, text='画图', command=drawPic).grid(row=2, column=2, columnspan=3)
 
