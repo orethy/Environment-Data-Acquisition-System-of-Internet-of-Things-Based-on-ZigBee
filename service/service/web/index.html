@@ -15,7 +15,10 @@
 <body>
     <div>
         <div id="container" style="min-width:400px;height:400px"></div>
+        <div class="message"></div>
         <script>
+            let max = 0
+            let min = Infinity
             Highcharts.setOptions({
                 global: {
                     useUTC: false
@@ -37,9 +40,12 @@
                                 chart = this;
                             setInterval(function () {
                                 var x = (new Date()).getTime(), // current time
-                                    y = Math.random() * 2 + 31;
+                                    y = Math.random() * 2 + 41;
+                                    max = Math.max(max, y)
+                                    min = Math.min(min, y)
                                 series.addPoint([x, y], true, true);
                                 activeLastPointToolip(chart)
+                                console.log(max - min) // 记录最高温升
                                 // if (y >= 32) alert("当前温度超过阈值上限，请留意！");
                             }, 1000);
                         }
@@ -85,7 +91,7 @@
                         for (i = -19; i <= 0; i += 1) {
                             data.push({
                                 x: time + i * 1000,
-                                y: Math.floor(Math.random() * 2 + 31)
+                                y: Math.floor(Math.random() * 2 + 31),
                             });
                         }
                         return data;
@@ -238,7 +244,7 @@
                     enabled: false
                 },
                 series: [{
-                    name: '实时温度',
+                    name: '实时温度test',
                     data: (function () {
                         // generate an array of random data
                         var data = [],
